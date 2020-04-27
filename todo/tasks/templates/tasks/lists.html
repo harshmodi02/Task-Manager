@@ -49,7 +49,6 @@
     }
     #speechToText{
         margin-left: 1%;
-        margin-top: 2%;
         height: 38px;
     }
     #submitButton{
@@ -111,12 +110,16 @@
 
 <section id="todo" class="displaySection" >
     
-    <form method="POST" action="/" class="d-flex justify-content-center" style="margin-bottom: 4%;">
+    <form method="POST" action="/" id="prospects_form" class="d-flex justify-content-center">
         {% csrf_token %}
-        <h4 id="taskEntry" value="">{{ form.title }}</h4>
-        <!-- <button id="speechToText" class="btn btn-success" onclick="recordAudio()"><i class="fas fa-microphone"></i></button> -->
-        <input id="submitButton" type="submit" class="btn btn-success" name="Create Task" value="Add Task">
+        <h4 id="taskEntry">{{ form.title }}</h4>
+        <input id="submitButton" type="submit" class="btn btn-success" name="Create Task" value="Add Task" title="Submit">
     </form>
+    <div  class="d-flex justify-content-center">
+        <h6 style="color: white; font-family: 'Poppins', sans-serif;padding-top: 10px;">or Say your task...</h6>
+        <button id="speechToText" class="btn btn-success " onclick="recordAudio()" title="Speech To Text"><i class="fas fa-microphone"></i></button>
+    </div>
+    
     
     {% for task in tasks %}
         <div id="individualTask" style="margin-left: 5%;margin-right: 5%;margin-top: 2%;">
@@ -169,13 +172,15 @@
     document.getElementById('today').innerHTML = days[day] + " , " + dt + " / " + mn;
 
     function recordAudio(){
+        
         var recognition = new webkitSpeechRecognition();
         recognition.lang = "en-US";
 
         recognition.onresult = function(event){
             console.log(event);
             console.log(event.results[0][0].transcript);
-            document.getElementById('taskEntry').value = event.results[0][0].transcript;
+            
+            document.getElementById('id_title').value = event.results[0][0].transcript;
         }
 
         recognition.start();
