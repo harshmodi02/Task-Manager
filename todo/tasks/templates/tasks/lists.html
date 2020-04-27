@@ -96,18 +96,6 @@
 <h3 id="today" class="d-flex justify-content-center"></h3>
 <h1 id="mainGreetings" class="d-flex justify-content-center"></h1>
 
-<!-- <h4 id="listOption" class="d-flex justify-content-center">I want to VIEW/EDIT my 
-    <span style="margin-left: 1%;margin-right: 1%;">
-        <select id="typeOfTask" onchange="listOptionSelected()">
-            <option value="select" selected disabled hidden>Select..</option>
-            <option value="todo">&nbsp;TO-DOs</option>
-            <option value="reminder">&nbsp;Reminders</option>
-            <option value="event">&nbsp;Events</option>
-        </select>
-    </span>
-    list.
-</h4> -->
-
 <section id="todo" class="displaySection" >
     
     <form method="POST" action="/" id="prospects_form" class="d-flex justify-content-center">
@@ -133,7 +121,6 @@
                     <i class="fas fa-arrow-circle-right"></i>
                     {% if task.priority == True %}
                         <span style="font-weight: bold;border-left: 5px solid #EB3349;">&nbsp;&nbsp;{{task}}</span>
-                        <span style="color: #EB3349;">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-exclamation-triangle"></i></span>
                     {% else %}
                         <span>&nbsp;&nbsp;{{task}}</span>
                     {% endif %}

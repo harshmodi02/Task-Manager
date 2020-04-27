@@ -7,16 +7,13 @@ from .forms import *
 # Create your views here.
 
 def index(request):
-	flag = request.POST.get("audioText")
-    # audioText = request.POST.get("audioText")
-	tasks = Task.objects.all().order_by('duedate')
+	tasks = Task.objects.all().order_by('duedate','-priority')
 	form = TaskForm()
 	
 
 	if request.method =='POST':
 		form = TaskForm(request.POST)
 		if form.is_valid():
-			form.fields['title'] = flag
 			form.save()
 		return redirect('/')
 
